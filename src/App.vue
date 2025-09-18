@@ -14,7 +14,6 @@
         />
       </div>
 
-      <!-- Buttons for manual swipe -->
       <div class="labels">
         <span class="dislike-label" @click="triggerSwipe(false)">&larr; Nope</span>
         <span class="like-label" @click="triggerSwipe(true)">Love &rarr;</span>
@@ -37,7 +36,7 @@ import Summary from './components/Summary.vue'
 const cats = ref([])
 const currentIndex = ref(0)
 const likedCats = ref([])
-const swipeCards = ref([]) // refs to child cards
+const swipeCards = ref([]) 
 
 const stackedCats = computed(() => {
   return cats.value.slice(currentIndex.value, currentIndex.value + 3)
@@ -49,13 +48,12 @@ function handleSwipe({ cat, liked }) {
 }
 
 function triggerSwipe(liked) {
-  const card = swipeCards.value[0] // top card
+  const card = swipeCards.value[0] 
   if (card && card.animateOut && !card.isAnimating) {
-    card.animateOut(liked) // run animation only if idle
+    card.animateOut(liked) 
   }
 }
 
-// Keyboard support → reuse triggerSwipe
 function handleKey(e) {
   if (e.key === 'ArrowRight') triggerSwipe(true)
   if (e.key === 'ArrowLeft') triggerSwipe(false)
@@ -102,7 +100,7 @@ function restartCats() {
 .card-stack-container {
   position: relative;
   width: 320px;
-  height: 500px; /* taller to fit buttons + labels */
+  height: 500px; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,7 +112,6 @@ function restartCats() {
   height: 400px;
 }
 
-/* Action buttons */
 .action-buttons {
   display: flex;
   justify-content: space-around;

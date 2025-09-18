@@ -15,7 +15,6 @@
     <h3>Want more cat?</h3>
     <button class="restart-btn" @click="$emit('restart')">Yes Please!</button>
 
-    <!-- Modal for zoomed image -->
     <div v-if="zoomedImage" class="modal" @click="closeImage">
       <img :src="zoomedImage" alt="Zoomed cat" />
     </div>
@@ -77,7 +76,6 @@ function closeImage() {
   background: #45a049;
 }
 
-/* Modal styling */
 .modal {
   position: fixed;
   top: 0;

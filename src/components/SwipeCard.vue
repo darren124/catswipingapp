@@ -5,8 +5,8 @@
     @mousedown="startDrag"
     @touchstart="startDrag"
   >
-    <!-- Show placeholder until image loads -->
-    <div v-if="!loaded" class="placeholder">Loading...</div>
+
+  <div v-if="!loaded" class="placeholder">Loading...</div>
     <img
       v-show="loaded"
       :src="cat.url"
@@ -39,13 +39,11 @@ function startDrag(e) {
   
   isDragging.value = true
   startX.value = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX
-  currentX.value = 0 // Reset position
+  currentX.value = 0 
   
-  // Add event listeners
   if (e.type.includes('mouse')) {
     document.addEventListener('mousemove', onDrag, { passive: false })
     document.addEventListener('mouseup', endDrag)
-    // Prevent text selection and image dragging
     e.preventDefault()
   } else {
     document.addEventListener('touchmove', onDrag, { passive: false })
@@ -56,12 +54,11 @@ function startDrag(e) {
 function onDrag(e) {
   if (!isDragging.value) return
   
-  e.preventDefault() // Prevent scrolling on touch devices
+  e.preventDefault() 
   
   const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX
   const deltaX = clientX - startX.value
   
-  // Add some resistance when dragging beyond certain thresholds
   if (Math.abs(deltaX) > 150) {
     const resistance = 0.3
     const excessDistance = Math.abs(deltaX) - 150
@@ -78,20 +75,17 @@ function endDrag() {
   isDragging.value = false
   isAnimating.value = true
   
-  const threshold = 80 // Reduced threshold for easier swiping
+  const threshold = 80
   
   if (currentX.value > threshold) {
-    // Swipe right - like
+
     animateCardOut(350, true)
-  } else if (currentX.value < -threshold) {
-    // Swipe left - dislike  
+  } else if (currentX.value < -threshold) { 
     animateCardOut(-350, false)
   } else {
-    // Snap back to center
     animateCardBack()
   }
   
-  // Clean up event listeners
   document.removeEventListener('mousemove', onDrag)
   document.removeEventListener('mouseup', endDrag)
   document.removeEventListener('touchmove', onDrag)
@@ -118,13 +112,11 @@ function animateOut(liked) {
   animateCardOut(targetX, liked)
 }
 
-// expose method for parent
 defineExpose({
   animateOut,
   isAnimating
 })
 
-// Keyboard swipe support
 function handleKey(e) {
   if (isAnimating.value || isDragging.value) return
   
@@ -139,7 +131,6 @@ function handleKey(e) {
 }
 
 onMounted(() => {
-  // Only top card should listen to keyboard
   if (props.cat.isTop) {
     document.addEventListener('keydown', handleKey)
   }
@@ -154,7 +145,7 @@ onBeforeUnmount(() => {
 })
 
 const cardStyle = computed(() => {
-  const rotation = currentX.value / 15 // Slightly less rotation for smoother feel
+  const rotation = currentX.value / 15 
   const opacity = isDragging.value ? Math.max(0.85, 1 - Math.abs(currentX.value) / 600) : 1
   
   return {
