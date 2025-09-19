@@ -110,7 +110,6 @@ function restartCats() {
   box-sizing: border-box;
 }
 
-/* Desktop styles */
 .card-stack-container {
   position: relative;
   width: 320px;
@@ -205,7 +204,6 @@ function restartCats() {
   box-shadow: 0 4px 8px rgba(46, 213, 115, 0.2);
 }
 
-/* Mobile responsive styles */
 @media (max-width: 768px) {
   .app {
     padding: 0.5rem;
@@ -249,11 +247,14 @@ function restartCats() {
 @media (max-width: 480px) {
   .app {
     padding: 0.25rem;
+    margin: 0;
+    padding-top: 0;
   }
 
   .app h1 {
     font-size: 1.3rem;
     margin: 0.1rem 0 0.5rem 0;
+    padding-top: 0.5rem;
   }
 
   .card-stack-container {
@@ -280,8 +281,17 @@ function restartCats() {
   }
 }
 
-/* Ensure proper box-sizing for all elements */
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  margin: 0;
+  padding: 0;
 }
 </style>
