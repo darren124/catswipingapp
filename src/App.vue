@@ -2,29 +2,35 @@
   <div class="app">
     <h1>Find Your Favourite Kitty</h1>
 
-    <div v-if="currentIndex < cats.length" class="card-stack-container">
-      <div class="card-stack">
-        <SwipeCard
-          v-for="(cat, index) in stackedCats"
-          :key="cat.id"
-          :cat="cat"
-          ref="swipeCards"
-          @swipe="handleSwipe"
-          :style="{ zIndex: cats.length - (currentIndex + index) }"
-        />
-      </div>
-
-      <div class="labels">
-        <span class="dislike-label" @click="triggerSwipe(false)">&larr; Nope</span>
-        <span class="like-label" @click="triggerSwipe(true)">Love &rarr;</span>
-      </div>
+    <div v-if="loading">
+      <p>Loading cats...</p>
     </div>
 
-    <Summary
-      v-else
-      :likedCats="likedCats"
-      @restart="restartCats"
-    />
+    <div v-else>
+      <div v-if="currentIndex < cats.length" class="card-stack-container">
+        <div class="card-stack">
+          <SwipeCard
+            v-for="(cat, index) in stackedCats"
+            :key="cat.id"
+            :cat="cat"
+            ref="swipeCards"
+            @swipe="handleSwipe"
+            :style="{ zIndex: cats.length - (currentIndex + index) }"
+          />
+        </div>
+
+        <div class="labels">
+          <span class="dislike-label" @click="triggerSwipe(false)">&larr; Nope</span>
+          <span class="like-label" @click="triggerSwipe(true)">Love &rarr;</span>
+        </div>
+      </div>
+
+      <Summary
+        v-else
+        :likedCats="likedCats"
+        @restart="restartCats"
+      />
+    </div>
   </div>
 </template>
 
@@ -37,6 +43,8 @@ const cats = ref([])
 const currentIndex = ref(0)
 const likedCats = ref([])
 const swipeCards = ref([]) 
+const loading = ref(true)
+
 
 const stackedCats = computed(() => {
   return cats.value.slice(currentIndex.value, currentIndex.value + 3)
@@ -69,6 +77,7 @@ onBeforeUnmount(() => {
 })
 
 async function fetchCats(count = 12) {
+  loading.value = true
   const promises = Array.from({ length: count }, () =>
     fetch('https://cataas.com/cat?json=true').then(res => res.json())
   )
@@ -79,6 +88,8 @@ async function fetchCats(count = 12) {
     id: item.id,
     url: `https://cataas.com/cat/${item.id}?width=500&height=500`
   }))
+
+  loading.value = false
 }
 
 function restartCats() {
