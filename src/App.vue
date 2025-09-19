@@ -205,15 +205,22 @@ function restartCats() {
 }
 
 @media (max-width: 768px) {
+  #app {
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+
   .app {
     padding: 0.5rem;
     justify-content: center;
+    margin: 0;
+    padding-top: 0.5rem;
   }
 
   .app h1 {
     text-align: center;
     width: 100%;
-    margin: 0.25rem 0 0.5rem 0;
+    margin: 0 0 0.5rem 0;
     font-size: 1.5rem;
   }
 
@@ -248,13 +255,13 @@ function restartCats() {
   .app {
     padding: 0.25rem;
     margin: 0;
-    padding-top: 0;
+    padding-top: 0.5rem;
   }
 
   .app h1 {
     font-size: 1.3rem;
-    margin: 0.1rem 0 0.5rem 0;
-    padding-top: 0.5rem;
+    margin: 0 0 0.5rem 0;
+    padding-top: 0;
   }
 
   .card-stack-container {
@@ -293,5 +300,12 @@ body {
 html {
   margin: 0;
   padding: 0;
+}
+
+@media (max-width: 768px) {
+  #app {
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
 }
 </style>
