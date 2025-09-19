@@ -110,7 +110,6 @@ function restartCats() {
   box-sizing: border-box;
 }
 
-/* Desktop styles */
 .card-stack-container {
   position: relative;
   width: 320px;
@@ -205,7 +204,6 @@ function restartCats() {
   box-shadow: 0 4px 8px rgba(46, 213, 115, 0.2);
 }
 
-/* Mobile responsive styles */
 @media (max-width: 768px) {
   .app {
     padding: 0.5rem;
@@ -222,14 +220,14 @@ function restartCats() {
   .card-stack-container {
     width: 90vw;
     max-width: 350px;
-    height: calc(100vh - 120px);
-    min-height: 550px;
+    height: calc(100vh - 160px);
+    min-height: 480px;
   }
 
   .card-stack {
     width: 100%;
     height: calc(100% - 60px);
-    min-height: 450px;
+    min-height: 380px;
   }
 
   .labels {
@@ -258,13 +256,13 @@ function restartCats() {
 
   .card-stack-container {
     width: 95vw;
-    height: calc(100vh - 100px);
-    min-height: 520px;
+    height: calc(100vh - 140px);
+    min-height: 450px;
   }
 
   .card-stack {
     height: calc(100% - 55px);
-    min-height: 420px;
+    min-height: 350px;
   }
 
   .labels {
@@ -280,7 +278,6 @@ function restartCats() {
   }
 }
 
-/* Ensure proper box-sizing for all elements */
 *, *::before, *::after {
   box-sizing: border-box;
 }
