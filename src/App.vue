@@ -106,8 +106,11 @@ function restartCats() {
   align-items: center;
   padding: 1rem;
   font-family: sans-serif;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
+/* Desktop styles */
 .card-stack-container {
   position: relative;
   width: 320px;
@@ -202,4 +205,83 @@ function restartCats() {
   box-shadow: 0 4px 8px rgba(46, 213, 115, 0.2);
 }
 
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .app {
+    padding: 0.5rem;
+    justify-content: center;
+  }
+
+  .app h1 {
+    text-align: center;
+    width: 100%;
+    margin: 0.5rem 0 1rem 0;
+    font-size: 1.5rem;
+  }
+
+  .card-stack-container {
+    width: 90vw;
+    max-width: 350px;
+    height: calc(100vh - 120px);
+    min-height: 550px;
+  }
+
+  .card-stack {
+    width: 100%;
+    height: calc(100% - 60px);
+    min-height: 450px;
+  }
+
+  .labels {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    padding: 0 10px;
+    flex-shrink: 0;
+  }
+
+  .dislike-label,
+  .like-label {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 0.25rem;
+  }
+
+  .app h1 {
+    font-size: 1.3rem;
+    margin: 0.25rem 0 0.75rem 0;
+  }
+
+  .card-stack-container {
+    width: 95vw;
+    height: calc(100vh - 100px);
+    min-height: 520px;
+  }
+
+  .card-stack {
+    height: calc(100% - 55px);
+    min-height: 420px;
+  }
+
+  .labels {
+    font-size: 0.8rem;
+    margin-top: 6px;
+    padding: 0 5px;
+  }
+
+  .dislike-label,
+  .like-label {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Ensure proper box-sizing for all elements */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 </style>
